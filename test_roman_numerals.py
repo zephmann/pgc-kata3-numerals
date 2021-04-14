@@ -1,39 +1,18 @@
 # :coding: utf-8
 
+import json
+
 import pytest
 
 import roman_numerals
 
 
-# @pytest.fixture
-# def match():
-#     return tennis.create_match()
+with open("numerals.json", "r") as f:
+    TEST_ROMAN_NUMERALS_LIST = (
+        (k,v) for k,v in json.load(f).items()
+    )
 
 
-@pytest.mark.parametrize(
-    "value, numerals",
-    [
-        (1, "I"),
-        (2, "II"),
-        (3, "III"),
-        (4, "IV"),
-        (5, "V"),
-        (6, "VI"),
-        (7, "VII"),
-        (8, "VIII"),
-        (9, "IX"),
-        (10, "X"),
-        (11, "XI"),
-        (12, "XII"),
-        (13, "XIII"),
-        (14, "XIV"),
-        (15, "XV"),
-        (16, "XVI"),
-        (17, "XVII"),
-        (18, "XVIII"),
-        (19, "XIX"),
-        (20, "XX"),
-    ]
-)
+@pytest.mark.parametrize("value, numerals", TEST_ROMAN_NUMERALS_LIST)
 def test_score(value, numerals):
     assert roman_numerals.convert(value) == numerals

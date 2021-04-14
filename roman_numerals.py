@@ -33,8 +33,13 @@ def _convert_digit(digit: int, exp: int) -> str:
     """Helper function to convert a single digit."""
     char_offset = exp * 2
     ones = NUMERAL_CHARACTERS[char_offset]
-    fives = NUMERAL_CHARACTERS[char_offset + 1]
-    tens = NUMERAL_CHARACTERS[char_offset + 2]
+
+    try:
+        fives = NUMERAL_CHARACTERS[char_offset + 1]
+        tens = NUMERAL_CHARACTERS[char_offset + 2]
+    except IndexError:
+        fives = ""
+        tens = ""
 
     if digit == 9:
         return f"{ones}{tens}"
