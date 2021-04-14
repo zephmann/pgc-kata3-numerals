@@ -14,7 +14,10 @@ NUMERAL_CHARACTERS = [
 
 def convert(value: int) -> str:
     """Convert an integer *value* into a string of Roman numerals."""
-    # TODO validate input
+    if not 1 <= value <= 3000:
+        raise NotImplementedError(
+            "Values outside of 1-3000 not supported."
+        )
 
     digits = map(int, reversed(list(str(value))))
     
@@ -32,14 +35,25 @@ def convert(value: int) -> str:
 def _convert_digit(digit: int, exp: int) -> str:
     """Helper function to convert a single digit."""
     char_offset = exp * 2
-    ones = NUMERAL_CHARACTERS[char_offset]
+    
+    ones = ""
+    fives = ""
+    tens = ""
 
     try:
-        fives = NUMERAL_CHARACTERS[char_offset + 1]
-        tens = NUMERAL_CHARACTERS[char_offset + 2]
+        ones = NUMERAL_CHARACTERS[char_offset]
     except IndexError:
-        fives = ""
-        tens = ""
+        pass
+    else:
+        try:
+            fives = NUMERAL_CHARACTERS[char_offset + 1]
+        except IndexError:        
+            pass
+        else:
+            try:
+                tens = NUMERAL_CHARACTERS[char_offset + 2]
+            except IndexError:
+                pass
 
     if digit == 9:
         return f"{ones}{tens}"
