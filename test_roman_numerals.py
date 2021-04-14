@@ -18,7 +18,7 @@ def test_score(value, numerals):
     assert roman_numerals.convert(value) == numerals
 
 
-@pytest.mark.parametrize("unsupported_value", [0, -1, 3001, 3002])
+@pytest.mark.parametrize("unsupported_value", [0, -1, 5001, 5002])
 def test_outside_range(unsupported_value):
     with pytest.raises(NotImplementedError):
         roman_numerals.convert(unsupported_value)

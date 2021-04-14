@@ -9,12 +9,13 @@ NUMERAL_CHARACTERS = [
     "C",  # hundred
     "D",  # five hundred
     "M",  # thousand
+    "V",  # five thousand
 ]
 
 
 def convert(value: int) -> str:
     """Convert an integer *value* into a string of Roman numerals."""
-    if not 1 <= value <= 3000:
+    if not 1 <= value <= 5000:
         raise NotImplementedError(
             "Values outside of 1-3000 not supported."
         )
